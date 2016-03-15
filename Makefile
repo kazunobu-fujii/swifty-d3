@@ -8,8 +8,8 @@ i:
 install: i
 	
 watch: 
-	@$(BIN)/webpack-dev-server --config webpack.config.js
 	@open Swifty-d3.playground
+	@$(BIN)/webpack-dev-server --config webpack.config.js
 	
 serve:
 	NODE_ENV=development node index.js
