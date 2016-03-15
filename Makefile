@@ -9,6 +9,7 @@ install: i
 	
 watch: 
 	@$(BIN)/webpack-dev-server --config webpack.config.js
+	@open Swifty-d3.playground
 	
 serve:
 	NODE_ENV=development node index.js

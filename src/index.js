@@ -2,8 +2,8 @@ import d3Scale from 'd3-scale';
 import d3Shape from 'd3-shape';
 import d3Array from 'd3-array';
 
-const data = [2, 8, 4, 19, 5, 7, 10];
-const dim = [500, 500];
+// const data = [2, 8, 4, 19, 5, 7, 10];
+// const dim = [500, 500];
 
 export let getPath = (data, dim) => {  
   const x = d3Scale.scaleLinear()
@@ -17,7 +17,7 @@ export let getPath = (data, dim) => {
   const line = d3Shape.line()
     .x((d, i) =>  x(i))
     .y((d, i) => y(d))
-    // .curve(d3Shape.curveBasis);
+    .curve(d3Shape.curveBasis);
   
   return line(data);
 }
