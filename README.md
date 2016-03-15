@@ -5,5 +5,6 @@ A simple experiment about calling d3 from swift code and rendering the results n
 ### To Run:
 
 ```
+make install
 make watch
 ```
