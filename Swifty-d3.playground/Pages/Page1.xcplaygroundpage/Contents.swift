@@ -1,12 +1,6 @@
-/*:
-# Test
-*/
-
-//: Playground - noun: a place where people can play
-
-//
 import UIKit
 import JavaScriptCore
+import Darwin
 import XCPlayground
 XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
 
@@ -30,9 +24,11 @@ class SVGView : UIView {
       c.op(bezierPath: myBezier)
     }
     UIColor.blackColor().setStroke()
+    myBezier.applyTransform(CGAffineTransformTranslate(CGAffineTransformMakeScale(1, -1), 0, -self.frame.height))
     myBezier.stroke()
   }
 }
+
 
 
 let url = NSURL(string: "http://localhost:8080/build/bundle.js")
@@ -46,7 +42,8 @@ let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, 
   jc.evaluateScript(jsCode! as String)
   
   let value = jc.objectForKeyedSubscript("Paths").objectForKeyedSubscript("getPath")
-  let result = value.callWithArguments([])
+  
+  let result = value.callWithArguments([[10,2,29,4,8,20,0,4], [500, 500]])
   print(result)
   
   
@@ -54,6 +51,9 @@ let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, 
   
   let view = SVGView(commands: Command.pathToCommands(result.toString()), frame: rect)
   view.backgroundColor = UIColor.whiteColor()
+  view.layer.opacity = 1
+
+  
 }
 
 task.resume()
