@@ -42,6 +42,7 @@ var url2 = NSURL(string: urlPath)!
 var request1 = NSURLRequest(URL: url2)
 var response: AutoreleasingUnsafeMutablePointer<NSURLResponse? >= nil
 var error: NSErrorPointer = nil
+// works better to do sync call in playground, async was messing up the timeline
 var dataVal: NSData =  try NSURLConnection.sendSynchronousRequest(request1, returningResponse: response)
 
 let jsCode = NSString(data: dataVal, encoding: NSASCIIStringEncoding)
@@ -50,10 +51,6 @@ let jsCode = NSString(data: dataVal, encoding: NSASCIIStringEncoding)
 
 let url = NSURL(string: "http://localhost:8080/build/bundle.js")
 
-
-//let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-//  let jsCode = NSString(data: dataVal!, encoding: NSUTF8StringEncoding)
-//  print(jsCode)
 
   let jc = JSContext()
   jc.evaluateScript(jsCode! as String)
@@ -90,6 +87,7 @@ let url = NSURL(string: "http://localhost:8080/build/bundle.js")
 
 
 
+
 	let anim = CASpringAnimation(keyPath: "path")
 //	anim.duration = 2
 anim.duration = 12.0;
@@ -111,12 +109,3 @@ XCPlaygroundPage.currentPage.liveView = view2
 
 
 
-
-
-
-	
-
-	
-//}
-
-//task.resume()
