@@ -8,8 +8,7 @@ public struct Command {
   
   public static func pathToCommands(path: String) -> [Command]{
     let tokens = "([a-m])|(([0-9\\.]+,?)+)".regExp().matches(path)
-    return tokens.chunk(2)
-    .map { Command(code: $0[0], args: $0[1]) }
+    return tokens.chunk(2).map { Command(code: $0[0], args: $0[1]) }
   }
   
   public init(code: String, args: String) {
