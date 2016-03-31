@@ -2,9 +2,6 @@ import d3Scale from 'd3-scale';
 import d3Shape from 'd3-shape';
 import d3Array from 'd3-array';
 
-// const data = [2, 8, 4, 19, 5, 7, 10];
-// const dim = [500, 500];
-
 export let getPath = (data, dim) => {  
   const x = d3Scale.scaleLinear()
     .domain([0, data.length])
