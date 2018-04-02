@@ -6,14 +6,14 @@ extension String {
   }
   
   func splitBy(token: String) -> [String] {
-    return self.characters.split { String($0) == token }.map { String.init($0) }
+    return self.split { String($0) == token }.map { String.init($0) }
   }
 }
 
 
 extension Array {
   func chunk(chunkSize : Int) -> Array<Array<Element>> {
-    return 0.stride(to: self.count, by: chunkSize)
-      .map { Array(self[$0..<$0.advancedBy(chunkSize, limit: self.count)]) }
+	return stride(from:0, to: self.count, by: chunkSize)
+		.map { Array(self[$0..<$0.advanced(by: chunkSize)]) }
   }
 }

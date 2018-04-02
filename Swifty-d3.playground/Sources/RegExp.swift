@@ -7,24 +7,24 @@ public struct RegExp {
   public init(_ pattern: String) {
     self.pattern = pattern
     do {
-      try self.regExp = NSRegularExpression(pattern: pattern, options: .CaseInsensitive)
+      try self.regExp = NSRegularExpression(pattern: pattern, options: .caseInsensitive)
     } catch _ {
       self.regExp = NSRegularExpression()
     }
   }
   
   public func matches(input: String) -> [String] {
-    let range = NSMakeRange(0, input.characters.count)
-    return self.regExp.matchesInString(input, options: .WithoutAnchoringBounds, range: range)
-      .map { (input as NSString).substringWithRange($0.range) }
+    let range = NSMakeRange(0, input.count)
+	return self.regExp.matches(in: input, options: .withoutAnchoringBounds, range: range)
+		.map { (input as NSString).substring(with: $0.range) }
   }
   
   public func test(input: String) -> Bool {
-    let range = NSMakeRange(0, input.characters.count)
-    return self.regExp.numberOfMatchesInString(input, options: .WithoutAnchoringBounds, range: range) > 0
+    let range = NSMakeRange(0, input.count)
+	return self.regExp.numberOfMatches(in: input, options: .withoutAnchoringBounds, range: range) > 0
   }
   
   public func test(input: Character) -> Bool {
-    return self.test(String(input))
+	return self.test(input: String(input))
   }
 }
